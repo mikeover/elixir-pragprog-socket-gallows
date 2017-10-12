@@ -10,6 +10,7 @@ export default class HangmanSocket {
     this.setup_channel()
     this.channel.on("tally", tally => {
       console.dir(tally)
+      this.channel.push("mjo", {})
     })
   }
 
