@@ -7,7 +7,6 @@ const RESPONSES = {
   initializing: ["info", "Let's Play!"]
 }
 
-let Vue = require("vue/dist/vue.min.js")
 import HangmanServer from "./hangman_socket.js"
 
 let view = function(hangman) {
@@ -47,6 +46,11 @@ let view = function(hangman) {
       turns_gt: function(left) {
         return this.tally.turns_left > left
       }
+    },
+    mounted() {
+      window.addEventListener("keypress", function(e) {
+        this.guess(String.fromCharCode(e.keyCode));
+      }.bind(this));
     }
   })
   return app;
