@@ -22,6 +22,7 @@ defmodule SocketGallowsWeb.HangmanChannel do
   end
 
   def handle_in("new_game", _args, socket) do
+    Process.send_after(self(), {:tick, 59}, 1000)
     socket = socket |> assign(:game, Hangman.new_game())
     handle_in("tally", nil, socket)
   end
