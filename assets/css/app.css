@@ -111,3 +111,7 @@ svg path {
       box-shadow: 0 0 0 0 rgba(90, 169, 212, 0);
   }
 }
+.time-remaining {
+  font-size: 28px;
+  font-weight: bold;  
+}

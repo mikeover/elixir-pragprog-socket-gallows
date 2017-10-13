@@ -26,6 +26,9 @@ export default class HangmanServer {
     this.channel.on("tally", (tally) => {
       this.copy_tally(tally)
     })
+    this.channel.on("time_remaining", (resp) => {
+      this.tally["time_remaining"] = resp.seconds_remaining
+    })
   }
 
   fetch_tally() {

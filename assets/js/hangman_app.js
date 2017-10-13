@@ -4,7 +4,8 @@ const RESPONSES = {
   good_guess: ["success", "Good guess!" ],
   bad_guess: ["warning", "Bad guess!" ],
   already_guessed: ["info", "You already guessed that"],
-  initializing: ["info", "Let's Play!"]
+  initializing: ["info", "Let's Play!"],
+  "lost-out of time": ["danger", "You ran out of time!"]
 }
 
 import HangmanServer from "./hangman_socket.js"
@@ -18,7 +19,7 @@ let view = function(hangman) {
     computed: {
       game_over: function() {
         let state = this.tally.game_state
-        return (state == "won") || (state == "lost")
+        return (state == "won") || (state == "lost") || (state == "lost-out of time")
       },
       game_state_message: function() {
         let state = this.tally.game_state
@@ -31,7 +32,9 @@ let view = function(hangman) {
     },
     methods: {
       guess: function(ch) {
-        hangman.make_move(ch)
+        if (!this.game_over) {
+          hangman.make_move(ch)
+        }
       },
       new_game: function() {
         hangman.new_game()
@@ -61,7 +64,8 @@ window.onload = function() {
     turns_left: 7,
     letters: ["_", "_", "_"],
     game_state: "initializing",
-    letters_used: []
+    letters_used: [],
+    time_remaining: 60
   }
 
   let hangman = new HangmanServer(tally)
