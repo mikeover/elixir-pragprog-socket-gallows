@@ -22,7 +22,7 @@ export default class HangmanServer {
   }
 
   setup_channel() {
-    this.channel = this.socket.channel("hangman:game", {})
+    this.channel = this.socket.channel("hangman:game", {difficulty: "easy"})
     this.channel.on("tally", (tally) => {
       this.copy_tally(tally)
     })
@@ -39,8 +39,8 @@ export default class HangmanServer {
     this.channel.push("make_move", guess)
   }
 
-  new_game() {
-    this.channel.push("new_game", {})
+  new_game(difficulty) {
+    this.channel.push("new_game", {difficulty: difficulty})
   }
 
   copy_tally(from) {

@@ -1,9 +1,17 @@
 body {
-    font-family: 'Gloria Hallelujah', cursive !important;
+  font-family: 'Gloria Hallelujah', !important;
+}
+
+.cursive {
+  font-family: 'Gloria Hallelujah', cursive !important;
 }
 
 .hide_component {
     opacity: 0.1;
+}
+
+.hidden {
+  display: none;
 }
 
 svg path {
@@ -68,17 +76,18 @@ svg path {
 }
 
 
-
+.new-game-section {
+  margin-top: 5rem;
+}
 
 .new-game-button-container {
-  width: 120px;
+  width: 260px;
   height: 60%;
 
 }
 
 .new-game-button {
-  margin-top: 5rem;
-  display: block;
+  display: inline;
   width: 120px;
   height: 60px;
   font-size: 1.3em;
@@ -89,10 +98,15 @@ svg path {
   color: white;
   border: none;
   border-radius: 60px;
-  background: rgb(190,169,212);
   cursor: pointer;
   box-shadow: 0px 0px 0px 0px rgba(190, 169, 212, .5);
   -webkit-animation: pulse 1.5s infinite;
+}
+.new-game-button-easy {
+   background: rgb(60,200,60);
+}
+.new-game-button-hard {
+   background: rgb(200,60,60);
 }
 .new-game-button:hover {
   -webkit-animation: none;

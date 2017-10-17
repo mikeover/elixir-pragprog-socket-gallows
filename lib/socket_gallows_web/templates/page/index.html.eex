@@ -1,12 +1,13 @@
 <div id="app">
-  <div v-bind:class="'alert alert-' + game_state_class">
+  <div v-bind:class="'cursive alert alert-' + game_state_class">
     {{ game_state_message }}
   </div>
 
   <div class="row">
     <div class="col-md-4">
       <%= render "_gallows.html" %>
-      <br/><br/>
+      <h3 style="text-align: center">Turns left: {{ tally.turns_left }}</h3>
+      <br/>
       <p style="text-align: center">
         You have<br/>
         <span class="time-remaining">{{ tally.time_remaining }}</span><br/>

@@ -2,11 +2,16 @@
   <span class="so-far">{{ tally.letters.join(" ") }}</span>
 </p>
 
-<template v-if="game_over">
+<template class="new-game-section" v-if="game_over">
+  <h2>Start a New Game:</h2>
   <div class="new-game-button-container">
-    <button class="new-game-button"
-            @click="new_game">
-      New Game
+    <button class="new-game-button new-game-button-easy"
+            @click="new_game('easy')">
+      Easy
+    </button>
+    <button class="new-game-button new-game-button-hard"
+            @click="new_game('hard')">
+      Hard
     </button>
   </div>
 </template>

@@ -36,8 +36,8 @@ let view = function(hangman) {
           hangman.make_move(ch)
         }
       },
-      new_game: function() {
-        hangman.new_game()
+      new_game: function(difficulty) {
+        hangman.new_game(difficulty)
       },
       already_guessed: function(ch) {
         return this.tally.letters_used.indexOf(ch) >= 0
@@ -47,7 +47,7 @@ let view = function(hangman) {
           (this.tally.letters.indexOf(ch) >= 0)
       },
       turns_gt: function(left) {
-        return this.tally.turns_left > left
+        return (this.tally.turns_allowed - this.tally.turns_left) < left
       }
     },
     mounted() {
@@ -61,11 +61,13 @@ let view = function(hangman) {
 
 window.onload = function() {
   let tally = {
-    turns_left: 7,
+    turns_left: 10,
     letters: ["_", "_", "_"],
     game_state: "initializing",
     letters_used: [],
-    time_remaining: 60
+    time_remaining: 60,
+    difficulty: "easy",
+    turns_allowed: 10
   }
 
   let hangman = new HangmanServer(tally)

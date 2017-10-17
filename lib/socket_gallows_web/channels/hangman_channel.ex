@@ -2,8 +2,8 @@ defmodule SocketGallowsWeb.HangmanChannel do
   require Logger
   use Phoenix.Channel
 
-  def join("hangman:game", _, socket) do
-    game = Hangman.new_game()
+  def join("hangman:game", params, socket) do
+    game = Hangman.new_game(params["difficulty"])
     Process.send_after(self(), {:tick, 59}, 1000)
     socket = assign(socket, :game, game)
     { :ok, socket }
@@ -21,9 +21,9 @@ defmodule SocketGallowsWeb.HangmanChannel do
     { :noreply, socket }
   end
 
-  def handle_in("new_game", _args, socket) do
+  def handle_in("new_game", args, socket) do
     Process.send_after(self(), {:tick, 59}, 1000)
-    socket = socket |> assign(:game, Hangman.new_game())
+    socket = socket |> assign(:game, Hangman.new_game(args["difficulty"]))
     handle_in("tally", nil, socket)
   end
 
